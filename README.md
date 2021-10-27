@@ -1,3 +1,13 @@
+# Test Driven Development with Cypress and Jest for a React App
+
+- install dependencies
+- run the app `npm start`
+- run Jest with script from `package.json`: `npm run test`
+- run Cypress with `npx cypess open`
+- or setup a script in `package.json`:
+  `"cypress": "cypress run --spec './cypress/integration/home/*.spec.js'"`
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

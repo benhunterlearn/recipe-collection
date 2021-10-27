@@ -42,9 +42,8 @@ const App = () => {
     };
 
     const renderRecipeList = () => recipeList.map((r) =>
-        // <li>Name: {r.name}<br/>
-        //     Instructions: {r.instructions}</li>
-        <li>{r.name}</li>
+        <li>Name: {r.name}<br/>
+        Instructions: {r.instructions}</li>
     );
 
     return (

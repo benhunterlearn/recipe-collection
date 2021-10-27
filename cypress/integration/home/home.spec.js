@@ -44,4 +44,32 @@ describe('Home page', () => {
                 expect(cy.findByRole('listitem', /1. heat a skillet/i)).toExist();
             })
     })
+
+    it("displays multiple recipe names under the 'My Recipes' heading after recipes have been added.", () => {
+        const recipeNameOne = 'Tofu Scramble Tacos';
+        const recipeNameTwo = 'Burger a la mode';
+
+        cy.findByRole('button').click();
+        cy.findByRole('textbox', {name: /Recipe name/i})
+            .type(recipeNameOne);
+        cy.findByRole('textbox', {name: /instructions/i})
+            .type("1. heat a skillet on medium with a dollop of coconut oil\n 2. warm flour tortillas");
+        cy.findByRole('button').click();
+
+        cy.findByRole('button').click();
+        cy.findByRole('textbox', {name: /Recipe name/i})
+            .type(recipeNameTwo);
+        cy.findByRole('textbox', {name: /instructions/i})
+            .type("Buns, meat, cheese, veggies, etc");
+        cy.findByRole('button').click()
+            .then(() => {
+                expect(cy.findByText(new RegExp(recipeNameOne, 'i'))).toExist();
+                expect(cy.findByText(/1. heat a skillet/i)).toExist();
+                expect(cy.findByText(/burger a la mode/i)).toExist();
+                expect(cy.findByText(/mode/i)).toExist();
+
+                expect(cy.findAllByRole('listitem')
+                    .should('have.lengthOf', 2)).toExist();
+            })
+    });
 });
